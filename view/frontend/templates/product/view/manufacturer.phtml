@@ -1,0 +1,8 @@
+<?php /* @var $this \Powerbody\Manufacturer\Block\Product\View\Manufacturer */ ?>
+<?php
+    /* @var $manufacturer \Powerbody\Manufacturer\Model\Manufacturer */
+    $manufacturer = $this->getManufacturer();
+?>
+<p class="manufacturer-name">
+    <a href="<?php echo $this->getManufacturerListUrl($manufacturer); ?>"><?php echo $this->getManufacturer()->getData('name'); ?></a>
+</p>

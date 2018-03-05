@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Powerbody_Manufacturer::manufacturers_index"
+             title="Manufacturers"
+             module="Powerbody_Manufacturer"
+             sortOrder="10"
+             resource="Powerbody_Manufacturer::index"
+             parent="Powerbody_Bridge::bridge"
+             action="manufacturer_admin"
+        />
+    </menu>
+</config>

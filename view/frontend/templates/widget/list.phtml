@@ -1,0 +1,22 @@
+<?php
+/**
+ * @var $block \Powerbody\Manufacturer\Block\Widget\MenuList
+ */
+
+$manufacturers = $block->getManufacturers();
+
+?>
+
+<?php foreach ($manufacturers as $manufacturerColumn) : ?>
+    <div class="span3">
+        <?php foreach ($manufacturerColumn as $manufacturer) : ?>
+            <div class="widget block block-manufacturer-link">
+                <a href="<?php echo '/manufacturer/index/view/bid/' . $manufacturer->getId(); ?>?manufacturer=<?php echo $manufacturer->getData('attribute_option_id'); ?>">
+                    <span>
+                        <?php echo $manufacturer->getData('name'); ?>
+                    </span>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php endforeach; ?>

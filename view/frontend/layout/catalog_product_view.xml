@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.main">
+            <block class="Powerbody\Manufacturer\Block\Product\View\Manufacturer" name="manufacturer.name"
+                   template="Powerbody_Manufacturer::product/view/manufacturer.phtml" />
+        </referenceBlock>
+        <move element="manufacturer.name" destination="product.info.main" before="-" />
+    </body>
+</page>

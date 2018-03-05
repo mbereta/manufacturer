@@ -1,0 +1,19 @@
+<div class="range" id="<?php echo $this->getData('htmlId'); ?>_range">
+    <div class="range-line date">
+        <input type="text" name="<?php echo $this->getData('htmlName'); ?>[from]" id="<?php echo $this->getData('htmlId'); ?>_from" 
+               value="<?php echo $this->getData('fromValue'); ?>" class="input-text admin__control-text no-changes" 
+               placeholder="<?php echo __('From'); ?>" <?php echo $this->getData('uiFromId'); ?> 
+        />
+    </div>
+    <div class="range-line date">        
+        <input type="text" name="<?php echo $this->getData('htmlName') ?>[to]" id="<?php echo $this->getData('htmlId'); ?>_to" 
+               value="<?php echo $this->getData('toValue') ?>" class="input-text admin__control-text no-changes" 
+               placeholder="<?php echo __('To'); ?>" <?php echo $this->getData('uiToId') ?> 
+        />
+    </div>
+</div>
+<input type='hidden' name="<?php echo $this->getData('htmlName'); ?>[locale]" value="<?php echo $this->getData('locale') ?>"/>
+<input type='hidden' class="manufacturer-datetime-filter" data-htmlId="<?php echo $this->getData('htmlId'); ?>" 
+       data-dateFormat="<?php echo $this->getData('dateFormat'); ?>" data-timeFormat="<?php echo $this->getData('timeFormat'); ?>"
+       data-showsTime="<?php echo $this->getData('showsTime'); ?>" data-buttonText="<?php echo $this->escapeHtml(__('Date selector')); ?>"       
+/>

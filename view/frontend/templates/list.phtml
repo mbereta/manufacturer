@@ -1,0 +1,55 @@
+<?php
+/* @var $block Powerbody\Manufacturer\Block\Manufacturer */
+/* @var $manufacturers array */
+$manufacturers = $block->getManufacturers();
+?>
+<section class="brand-header">
+    <div class="container">
+        <h1 class="page-title"><?php echo __('Full Brand Listing'); ?></h1>
+    </div>
+</section>
+<div class="brands-alphabet" >
+    <div class="container-gt-s">
+        <div class="brands-slider">
+            <?php foreach ($manufacturers as $letter => $manufacturersOnLetter) : ?>
+                <?php if ('numbers' == $letter): ?>
+                    <div class="item"><a class="scroll-to" href="#<?php echo $letter; ?>">#</a></div>
+                <?php else : ?>
+                    <div class="item"><a class="scroll-to" href="#<?php echo $letter; ?>"><?php echo $letter; ?></a>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+<?php foreach ($manufacturers as $firstLetter => $manufacturersOnLetter): ?>
+    <div class="brands-list">
+        <div class="gray-bg gray-borders clr">
+            <div class="container">
+                <?php if ('numbers' !== $firstLetter): ?>
+                    <h6 id="<?php echo $firstLetter; ?>"><?php echo $firstLetter; ?></h6>
+                <?php else: ?>
+                    <h6 id="<?php echo $firstLetter; ?>">0-9</h6>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="container">
+            <ul class="logos-list">
+                <?php /* @var $manufacturerModel Powerbody_Manufacturer_Model_Manufacturer */?>
+                <?php foreach ($manufacturersOnLetter as $manufacturerModel): ?>
+                    <li>
+                        <a href="<?php echo $this->getManufacturerUrl($manufacturerModel); ?>">
+                            <span class="image">
+                                <img src="<?php echo $block->getManufacturerLogoUrl(strval($manufacturerModel->getData('logo'))); ?>" alt="<?php echo $manufacturerModel->getData('name'); ?>"/>
+                            </span>
+                            <span class="name"><?php echo $manufacturerModel->getData('name'); ?></span>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+<?php endforeach; ?>
+<script type="text/javascript">
+    requirejs(['Powerbody_Manufacturer/manufacturer']); 
+</script>
