@@ -5,11 +5,10 @@ namespace Powerbody\Manufacturer\Service\Manufacturer;
 
 use Powerbody\Manufacturer\Model\Manufacturer\ProductFactory as ManufacturerProductFactory;
 use Powerbody\Manufacturer\Model\ResourceModel\Manufacturer\Product as ManufacturerProductResourceModel;
-use Powerbody\Theme\Provider\Manufacturer\ManufacturerOptionIdProviderInterface;
-use Powerbody\Theme\Exception\ManufacturerOptionIdNotFoundException;
+use Powerbody\Manufacturer\Exception\ManufacturerOptionIdNotFoundException;
 use Magento\Catalog\Model\Product as CatalogProduct;
 
-class ProductService implements ProductServiceInterface, ManufacturerOptionIdProviderInterface
+class ProductService implements ProductServiceInterface
 {
     private $manufacturerProductResourceModel;
 
