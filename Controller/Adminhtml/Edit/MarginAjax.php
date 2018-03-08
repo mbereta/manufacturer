@@ -48,4 +48,13 @@ class MarginAjax extends Action
 
         return $result->setData(['qwe' => 1]);
     }
+
+    /**
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Powerbody_Manufacturer::index');
+    }
+
 }

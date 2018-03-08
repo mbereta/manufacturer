@@ -3,12 +3,12 @@
         <tab id="manufacturer_config" translate="label" sortOrder="1000">
             <label>Manufacturer</label>
         </tab>
-        <section id="manufacturer" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="manufacturer" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
             <label>General settings</label>
             <tab>manufacturer_config</tab>
             <resource>Powerbody_Manufacturer::config</resource>
-            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <field id="minimal_margin" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="minimal_margin" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Minimal margin</label>
                     <validate>validate-number validate-zero-or-greater</validate>
                     <comment>Percentage (%)</comment>

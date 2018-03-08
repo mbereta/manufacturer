@@ -4,9 +4,9 @@
         <add id="Powerbody_Manufacturer::manufacturers_index"
              title="Manufacturers"
              module="Powerbody_Manufacturer"
-             sortOrder="10"
+             sortOrder="30"
              resource="Powerbody_Manufacturer::index"
-             parent="Powerbody_Bridge::bridge"
+             parent="Magento_Catalog::inventory"
              action="manufacturer_admin"
         />
     </menu>

@@ -3,10 +3,15 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
+                <resource id="Magento_Catalog::catalog">
+                    <resource id="Magento_Catalog::catalog_inventory">
+                        <resource id="Powerbody_Manufacturer::index" title="Manufacturers" translate="title" sortOrder="30" />
+                    </resource>
+                </resource>
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="Powerbody_Manufacturer::index" title="Manufacturer index" />
+                            <resource id="Powerbody_Manufacturer::config" title="Manufacturer settings" />
                         </resource>
                     </resource>
                 </resource>

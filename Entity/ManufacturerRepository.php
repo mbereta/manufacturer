@@ -9,6 +9,7 @@ use Powerbody\Manufacturer\Model\Manufacturer as Manufacturer;
 
 class ManufacturerRepository implements ManufacturerRepositoryInterface
 {
+
     /**
      * @var \Powerbody\Manufacturer\Model\ManufacturerFactory
      */
@@ -37,6 +38,7 @@ class ManufacturerRepository implements ManufacturerRepositoryInterface
             ->create()
             ->getCollection()
             ->addFieldToFilter('attribute_option_id', $manufacturerOptionId)
-            ->getFirstItem();                
+            ->getFirstItem();
     }
+
 }
