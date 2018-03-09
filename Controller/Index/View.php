@@ -9,7 +9,8 @@ use Magento\Framework\Controller\Result\Forward;
 use Magento\Framework\Controller\Result\ForwardFactory;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\View\Result\Page;
-use Powerbody\Manufacturer\Model\ManufacturerFactory as ManufacturerFactory;
+use Powerbody\Manufacturer\Entity\ManufacturerRepository;
+use Powerbody\Manufacturer\Model\Manufacturer;
 
 class View extends Action
 {
@@ -19,10 +20,8 @@ class View extends Action
     /* @var ForwardFactory */
     protected $resultForwardFactory;
 
-    /**
-     * @var ManufacturerFactory
-     */
-    private $manufacturerFactory;
+    /** @var ManufacturerRepository */
+    protected $manufacturerRepository;
 
     /**
      * @param Context $context
@@ -33,11 +32,11 @@ class View extends Action
         Context $context,
         PageFactory $resultPageFactory,
         ForwardFactory $resultForwardFactory,
-        ManufacturerFactory $manufacturerFactory
+        ManufacturerRepository $manufacturerRepository
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->resultForwardFactory = $resultForwardFactory;
-        $this->manufacturerFactory = $manufacturerFactory;
+        $this->manufacturerRepository = $manufacturerRepository;
 
         parent::__construct($context);
     }
@@ -63,13 +62,14 @@ class View extends Action
 
     private function getManufacturerName() : string
     {
-        $manufacturerId = $this->getRequest()->getParam('bid');
+        $manufacturerId = (int)$this->getRequest()->getParam('bid');
+        /** @var Manufacturer $manufacturer */
+        $manufacturer = $this->manufacturerRepository->getManufacturerByOptionId($manufacturerId);
 
-        $manufacturer = $this->manufacturerFactory
-            ->create()
-            ->load($manufacturerId);
+        if (true === empty($manufacturer)) {
+            $manufacturer = $this->manufacturerRepository->getManufacturerById($manufacturerId);
+        }
 
         return $manufacturer->getData('name');
     }
-
 }
