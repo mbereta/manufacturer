@@ -66,7 +66,7 @@ class View extends Action
         /** @var Manufacturer $manufacturer */
         $manufacturer = $this->manufacturerRepository->getManufacturerByOptionId($manufacturerId);
 
-        if (true === empty($manufacturer)) {
+        if (true === empty($manufacturer->getId())) {
             $manufacturer = $this->manufacturerRepository->getManufacturerById($manufacturerId);
         }
 
