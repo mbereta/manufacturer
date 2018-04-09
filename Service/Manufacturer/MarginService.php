@@ -6,6 +6,7 @@ namespace Powerbody\Manufacturer\Service\Manufacturer;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product;
+use Magento\Catalog\Model\ResourceModel\Product as ProductResource;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Powerbody\Manufacturer\Model\Manufacturer;
 use Powerbody\Manufacturer\Model\ResourceModel\ManufacturerRepositoryInterface;
@@ -22,16 +23,20 @@ class MarginService implements MarginServiceInterface
 
     private $configurationReader;
 
+    private $productResourceModel;
+
     public function __construct(
         ManufacturerRepositoryInterface $manufacturerRepository,
         ProductRepositoryInterface $productRepository,
         ProductsProviderInterface $productsProvider,
-        ConfigurationReaderInterface $configurationReader
+        ConfigurationReaderInterface $configurationReader,
+        ProductResource $productResourceModel
     ) {
         $this->manufacturerRepository = $manufacturerRepository;
         $this->productRepository = $productRepository;
         $this->productsProvider = $productsProvider;
         $this->configurationReader = $configurationReader;
+        $this->productResourceModel = $productResourceModel;
     }
 
     public function updateManufacturerMargin(int $manufacturerId, int $newMargin)
@@ -73,6 +78,23 @@ class MarginService implements MarginServiceInterface
             $manufacturer->setData('margin', $newMinimalMargin);
             $this->manufacturerRepository->save($manufacturer);
             $this->recalculatePrices((int) $manufacturer->getId(), $newMinimalMargin);
+        }
+    }
+
+    public function updateProductPrices(int $manufacturerId, int $newMargin)
+    {
+        $products = $this->productsProvider
+            ->findAllByManufacturerId($manufacturerId)
+            ->addAttributeToSelect('base_price');
+
+        if ($products->getSize() < 1) {
+            return;
+        }
+
+        /* @var $product Product */
+        foreach ($products as $product) {
+            $this->applyMargin($product, $newMargin);
+            $this->productResourceModel->saveAttribute($product, 'price');
         }
     }
 

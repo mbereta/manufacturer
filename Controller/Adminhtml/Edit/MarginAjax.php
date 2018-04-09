@@ -36,7 +36,9 @@ class MarginAjax extends Action
                 $manufacturerId = (int) $item['id'];
                 $newMargin = (int) $item['margin'];
                 $this->marginService->updateManufacturerMargin($manufacturerId, $newMargin);
-                return $result->setData(['error' => false, 'messages' => ['Margin updated.'],]);
+                $this->marginService->updateProductPrices($manufacturerId, $newMargin);
+
+                return $result->setData(['error' => false, 'messages' => ['Margin and prices updated.'],]);
             } catch (NewMarginTooLowException $e) {
                 return $result->setData(['error' => true, 'messages' => ['Requested margin is too low.'],]);
             } catch (NoSuchEntityException $e) {
