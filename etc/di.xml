@@ -33,6 +33,7 @@
         </arguments>
     </type>
     <preference for="Powerbody\Manufacturer\Model\ResourceModel\ManufacturerRepositoryInterface" type="Powerbody\Manufacturer\Model\ResourceModel\ManufacturerRepository"/>
+    <preference for="Powerbody\Manufacturer\Entity\ManufacturerRepositoryInterface" type="Powerbody\Manufacturer\Entity\ManufacturerRepository"/>
     <preference for="Powerbody\Manufacturer\Service\Manufacturer\ProductServiceInterface" type="Powerbody\Manufacturer\Service\Manufacturer\ProductService"/>
     <preference for="Powerbody\Manufacturer\Service\Manufacturer\MarginServiceInterface" type="Powerbody\Manufacturer\Service\Manufacturer\MarginService"/>
     <preference for="Powerbody\Manufacturer\Provider\Manufacturer\ProductsProviderInterface" type="Powerbody\Manufacturer\Provider\Manufacturer\ProductsProvider"/>
