@@ -7,7 +7,7 @@ use Powerbody\Manufacturer\Model\Manufacturer\ProductFactory as ManufacturerProd
 use Powerbody\Manufacturer\Model\ResourceModel\Manufacturer\Product as ManufacturerProductResourceModel;
 use Magento\Catalog\Model\Product as CatalogProduct;
 
-class ProductService implements ProductServiceInterface
+class ProductService implements ProductServiceInterface //, ManufacturerOptionIdProviderInterface
 {
     private $manufacturerProductResourceModel;
 
@@ -44,7 +44,13 @@ class ProductService implements ProductServiceInterface
                 return intval($childProductModel->getData('manufacturer'));
             }
         }
-        
+
+        $isImported = $productModel->getData('is_imported');
+
+        if(is_null($isImported)){
+            return -1;
+        }
+
         throw new ManufacturerOptionIdNotFoundException;
     }
 }

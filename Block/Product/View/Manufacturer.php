@@ -47,7 +47,13 @@ class Manufacturer extends AbstractProduct
         /* @var $product \Magento\Catalog\Model\Product */
         $product = $this->getProduct();
 
+        $isImported = $product->getData('is_imported');
+
         $manufacturerId = intval($product->getData('manufacturer'));
+
+        if (is_null($isImported)) {
+            $manufacturerId = -1;
+        }
 
         if (true === $product->canConfigure() && null === $product->getData('manufacturer')) {
             try {
