@@ -126,6 +126,11 @@ class MarginService implements MarginServiceInterface
     {
         $basePrice = $product->getData('base_price');
 
-        return $basePrice * (1 + $newMargin / 100);
+        if($customMargin = $product->getData('margin')){
+            return $basePrice * (1 + $customMargin / 100);
+        }else{
+            return $basePrice * (1 + $newMargin / 100);
+        }
+
     }
 }

@@ -89,6 +89,18 @@ class ManufacturerRepository implements ManufacturerRepositoryInterface
             );
     }
 
+
+    public function getManufacturersByAttributeOptionId($attributeOptionId) : Manufacturer
+    {
+        return $this->manufacturerFactory
+            ->create()
+            ->getCollection()
+            ->addFieldToFilter('attribute_option_id', ['eq' => $attributeOptionId])
+            ->fetchItem();
+
+    }
+
+
     public function save(Manufacturer $manufacturer)
     {
         $manufacturer->getResource()->save($manufacturer);
